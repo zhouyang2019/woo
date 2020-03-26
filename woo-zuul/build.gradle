@@ -1,0 +1,9 @@
+dependencies {
+    compile lib.spring_boot_starter_web
+    compile lib.spring_cloud_starter_netflix_zuul
+    compile lib.spring_cloud_starter_netflix_eureka_client
+}
+
+springBoot {
+    mainClassName = 'com.woo.zuul.ZuulApplication'
+}

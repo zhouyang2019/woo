@@ -1,0 +1,8 @@
+//apply plugin: 'war'
+
+dependencies {
+}
+
+springBoot {
+    mainClassName = 'com.woo.product.ProductApplication'
+}

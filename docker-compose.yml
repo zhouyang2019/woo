@@ -1,0 +1,139 @@
+version: "3.7"
+services:
+  woo-rabbit:
+    image: rabbitmq:3-management
+    container_name: woo-rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    expose:
+      - 15672
+      - 5672
+
+  woo-zipkin:
+    image: openjdk:8-jdk-alpine
+    container_name: woo-zipkin
+    ports:
+      - 9411:9411
+    command: java -Xmx128m -jar /docker/lib/zipkin.jar
+    volumes:
+      - ./zipkin:/docker/lib
+    depends_on:
+      - woo-rabbit
+
+  woo-eureka:
+    image: openjdk:8-jdk-alpine
+    container_name: woo-eureka
+    ports:
+      - 8761:8761
+    command: java -Xmx128m -jar /docker/lib/woo-eureka-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+
+  woo-config:
+    image: openjdk:8-jdk-alpine
+    container_name: woo-config
+    ports:
+      - 8801:8801
+    command: java -Xmx128m -jar /docker/lib/woo-config-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+  woo-hystric:
+    image: openjdk:8-jdk-alpine
+    container_name: woo-hystric
+    ports:
+      - 8802:8802
+    command: java -Xmx128m -jar /docker/lib/woo-hystric-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+  woo-zuul:
+    image: openjdk:8-jdk-alpine
+    container_name: woo-zuul
+    ports:
+      - 8803:8803
+    command: java -Xmx128m -jar /docker/lib/woo-zuul-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+  woo-admin:
+    image: openjdk:8-jdk-alpine
+    container_name: woo-admin
+    ports:
+      - 9301:9301
+    command: java -Xmx128m -jar /docker/lib/woo-admin-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+
+
+
+  ####################################################
+  # mall-product
+  ####################################################
+  mamll-product:
+    image: openjdk:8-jdk-alpine
+    container_name: mall-product
+    ports:
+      - 8811:8811
+    command: java -Xmx128m -jar /docker/lib/mall-product-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+  ####################################################
+  # mall-user
+  ####################################################
+  mamll-user:
+    image: openjdk:8-jdk-alpine
+    container_name: mall-user
+    ports:
+      - 8821:8821
+    command: java -Xmx128m -jar /docker/lib/mall-user-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+  ####################################################
+  # mall-order
+  ####################################################
+  mamll-order-01:
+    image: openjdk:8-jdk-alpine
+    container_name: mall-order-01
+    ports:
+      - 8831:8831
+    command: java -Xmx128m -jar /docker/lib/mall-order-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit
+
+  mamll-order-02:
+    image: openjdk:8-jdk-alpine
+    container_name: mall-order-02
+    ports:
+      - 8832:8831
+    command: java -Xmx128m -jar /docker/lib/mall-order-1.0.jar
+    volumes:
+      - ./deploy/lib:/docker/lib
+    depends_on:
+      - woo-eureka
+      - woo-rabbit

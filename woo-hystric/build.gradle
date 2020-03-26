@@ -1,0 +1,11 @@
+dependencies {
+    compile lib.spring_boot_starter_web
+    compile lib.spring_cloud_starter_config
+    compile lib.spring_cloud_starter_netflix_hystrix
+    compile lib.spring_cloud_starter_netflix_hystrix_dashboard
+    compile lib.spring_cloud_starter_netflix_turbine
+}
+
+springBoot {
+    mainClassName = 'com.woo.hystric.HystrixDashboardApplication'
+}

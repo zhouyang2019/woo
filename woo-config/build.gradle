@@ -1,0 +1,11 @@
+dependencies {
+    compile lib.spring_boot_starter_web
+    compile lib.spring_cloud_config_server
+    compile lib.spring_boot_starter_security
+    compile lib.spring_cloud_starter_netflix_eureka_client
+    compile lib.spring_boot_admin_starter_client
+}
+
+springBoot {
+    mainClassName = 'com.woo.config.ConfigServerApplication'
+}

@@ -1,0 +1,7 @@
+dependencies {
+    compile lib.spring_cloud_starter_openfeign
+}
+
+springBoot {
+    mainClassName = 'com.woo.user.MallUserApplication'
+}

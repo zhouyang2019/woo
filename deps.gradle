@@ -1,0 +1,33 @@
+//各模块间的依赖关系
+project(':woo-common') {
+}
+
+project(':woo-core') {
+    dependencies {
+        compile project(':woo-common')
+    }
+}
+
+project(':woo-oauth') {
+    dependencies {
+        compile project(':woo-core')
+    }
+}
+
+project(':mall-product') {
+    dependencies {
+        compile project(':woo-core')
+    }
+}
+
+project(':mall-order') {
+    dependencies {
+        compile project(':woo-core')
+    }
+}
+
+project(':mall-user') {
+    dependencies {
+        compile project(':woo-core')
+    }
+}

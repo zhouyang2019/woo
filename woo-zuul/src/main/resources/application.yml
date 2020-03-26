@@ -1,0 +1,17 @@
+server:
+  port: 8803
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://woo-eureka:8761/eureka/
+
+spring:
+  application:
+    name: zuul-server
+
+zuul:
+  routes:
+    api-a:
+      path: /api-data/**
+      serviceId: PRODUCT-DATA-SERVICE

@@ -1,0 +1,8 @@
+dependencies {
+    compile lib.spring_boot_starter_web
+    compile lib.spring_cloud_starter_netflix_eureka_server
+}
+
+springBoot {
+    mainClassName = 'com.woo.eureka.EurekaServerApplication'
+}

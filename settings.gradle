@@ -1,0 +1,19 @@
+rootProject.name = 'woo'
+
+include 'woo-eureka'
+include 'woo-config'
+include 'woo-hystric'
+//java -jar zipkin-server-2.10.1-exec.jar --zipkin.collector.rabbitmq.addresses=localhost
+// docker run -d -p 9411:9411 openzipkin/zipkin
+//include 'woo-zipkin' 
+include 'woo-zuul'
+//docker pull rabbitmq:3-management
+//docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+
+include 'woo-common'
+include 'woo-core'
+include 'woo-admin'
+include 'woo-oauth'
+include 'mall-product'
+include 'mall-order'
+include 'mall-user'

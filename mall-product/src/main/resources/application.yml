@@ -1,0 +1,25 @@
+server:
+  port: 8811
+
+spring:
+  boot:
+    admin:
+      client:
+        url: http://woo-admin:9301 #配置admin-server地址
+  zipkin:
+    base-url: http://woo-zipkin:9411
+  sleuth:
+    sampler:
+      probability: 0.1 #设置Sleuth的抽样收集概率
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+      cors:
+        allowed-origins: '*'
+        allowed-methods: '*'
+  endpoint:
+    health:
+      show-details: always

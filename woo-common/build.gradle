@@ -1,0 +1,12 @@
+jar.enabled = true
+bootJar.enabled = false
+
+dependencies {    
+    compile lib.lombok
+    compile lib.commons_lang3
+    compile lib.guava
+    compile lib.hutool_all
+    compile lib.poi_ooxml
+    compile lib.jackson_databind
+    compile lib.jackson_dataformat_xml
+}

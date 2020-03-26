@@ -1,0 +1,6 @@
+dependencies {
+}
+
+springBoot {
+    mainClassName = 'com.woo.order.MallOrderApplication'
+}
